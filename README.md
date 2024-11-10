@@ -75,3 +75,17 @@ pip install git+https://github.com/tatsy/torchmcubes.git
   year={2024}
 }
 ```
+
+
+## dcanady implementation notes ##
+I made a Dockerfile that uses the same base image as the SimpleTuner project, it seemed to have all the stuff TripoSR needed. Below are the docker commands I ran.
+
+Build docker image
+```bash
+docker build -t triposr:dcanady
+```
+
+Run docker image with a volume mapping  the present working directory to the `/app/output` directory in the container. The args I passed to run.py were the `examples/chair.png` for the input image and `--output-dir output/` to specify the output as `/app/output` in the container (which is what is mapped in the docker volume). You should be able to change these inputs in runpod.
+```bash
+docker run --name triposr --volume .:/app/output triposr:dcanady examples/chair.png --output-dir output/
+```
