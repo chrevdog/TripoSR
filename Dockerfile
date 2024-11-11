@@ -14,3 +14,6 @@ RUN pip install -r requirements.txt
 
 RUN mkdir /app/output/
 ENTRYPOINT ["python","run.py"]
+
+
+#update to include jupyter notebook
